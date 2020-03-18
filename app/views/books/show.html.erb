@@ -1,0 +1,13 @@
+<h2><%= @book.title%> by <%= link_to @book.author.name, author_path(@book.author)%></h2>
+<h3>Genre: <%= link_to @book.genre.name, genre_path(@book.genre)%></h3>
+<h3>Page Count: <%= @book.page_count%></h3>
+<br>
+
+<% if !current_user.books.include?(@book) %>
+  <%= form_for current_user user_path(current_user) do |f|%>
+    <%= f.hidden_field :book, value: @book.id %>
+    <%= f.submit 'Read Book' %>
+  <% end %>
+<%else%>
+  <p>You've read this book.</p>
+<% end %>
