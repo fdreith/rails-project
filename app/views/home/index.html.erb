@@ -1,4 +1,4 @@
-<h2>Welcome, <%= current_user.email %></h2>
+<h2><%= current_user.name != nil ? current_user.name : current_user.email %> Homepage </h2>
 
 <%# <%= button_to "New Book", { :controller => "books", :action => "new" }, :method => :get %> 
 <%= link_to '<button type="New Book">New Book</button>'.html_safe, new_book_path %>
