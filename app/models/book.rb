@@ -7,4 +7,9 @@ class Book < ApplicationRecord
   # has_many :favorited_quotes
   # has_many :annotations
   # has_many :recommendations
+
+  validates :title, presence: true, uniqueness: true 
+  validates :author_id, presence: true
+  # validates :genre_id, presence: true
+  validates :page_count, presence: true
 end
