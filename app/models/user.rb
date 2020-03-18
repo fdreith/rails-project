@@ -1,6 +1,9 @@
 class User < ApplicationRecord
+  has_many :user_books
   has_many :books, through: :user_books
+  has_many :user_book_clubs
   has_many :book_clubs, through: :user_book_clubs
+  has_many :comments
   # has_many :favorited_quotes
   # has_many :annotations
   # has_many :recommendations
