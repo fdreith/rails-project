@@ -1,0 +1,14 @@
+<%= form_for @book do |f|%>
+  <%= f.label :title %>
+  <%= f.text_field :title %><br>
+  <%= f.label :author %>
+  <%= f.collection_select :author, @authors, :name, :id%><br>
+  <%= f.label "If your Author is not in the options available, create a new Author:" %>
+  <%= f.text_field :author %><br>
+  <%= f.label :genre %>
+  <%= f.collection_select :genre, @genres, :name, :id%><br>
+  <%= f.label "If the Genre is not in the options available, create a new Genre:" %>
+  <%= f.text_field :genre %><br><br>
+  <%= f.label :page_count %>
+  <%= f.text_field :page_count %><br>
+<%= f.submit%>
