@@ -1,3 +1,5 @@
+<h2>Create a New Book:</h2>
+
 <%= form_for @book do |f|%>
   <%= f.label :title %>
   <%= f.text_field :title %><br>
@@ -12,3 +14,4 @@
   <%= f.label :page_count %>
   <%= f.text_field :page_count %><br>
 <%= f.submit%>
+<%end%>
