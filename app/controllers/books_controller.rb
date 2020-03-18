@@ -6,22 +6,29 @@ class BooksController < ApplicationController
 
   def new
     @book = Book.new
-    @authors = Author.all
-    @genres = Genre.all
+
   end
 
   def create
-    binding.pry
-    author = Author.find_or_create_by(name: params[:book][:author])
-    genre = Genre.find_or_create_by(name: params[:book][:genre])
+    if !params[:book][:author_id].empty?
+      author = Author.find(params[:book][:author_id])
+    else 
+      author = Author.create(name: params[:book][:author_attributes][:name])
+    end
+     
+    if !params[:book][:genre_id].empty?
+      genre = Genre.find(params[:book][:genre_id])
+    else
+      genre = Genre.create(name: params[:book][:genre_attributes][:name])
+    end
 
-    book = Book.create(
-      title: params[:book][:title],
+    @book = Book.create(
+      title: params[:book][:title].strip,
       author_id: author.id,
       genre_id: genre.id,
       page_count: params[:book][:page_count]
     )
-    if book 
+    if @book.persisted?
       redirect_to books_path
     else
       render :new
@@ -33,9 +40,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
-  def have_read #should this method be in a user_controller?
-    @book = Book.find(params[:book_id])
-    current_user.books << @book
-  end
+
+
 
 end

@@ -1,28 +1,38 @@
 <h2>Create a New Book:</h2>
 
+
 <%= form_for @book do |f|%>
+
+<% if @book.errors.any? %>
+<ul>
+  <% @book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+<% end %>
+
   <%= f.label :title %>
   <%= f.text_field :title %><br>
   <%= f.label :author %>
-  <%= f.collection_select :author_id, @authors, :id, :name, {:include_blank => true}%><br>
+  <%= f.collection_select :author_id, Author.all, :id, :name, {:include_blank => true}%><br>
   If your Author is not in the options available, create a new Author:
   <br>
 
-  <%= f.fields_for :author do |a| %>
+  <%= f.fields_for :author, @book.build_author do |a| %>
     <%= a.label :name, "Author" %>
     <%= a.text_field :name %><br>
   <% end %>
 
   <%= f.label :genre %>
-  <%= f.collection_select :genre, @genres, :id, :name, {:include_blank => true}%><br>
+  <%= f.collection_select :genre_id, Genre.all, :id, :name, {:include_blank => true}%><br>
   If the Genre is not in the options available, create a new Genre:
   <br>
 
-  <%= f.fields_for :genre, @book.genre do |a| %>
+  <%= f.fields_for :genre, @book.build_genre do |g| %>
     <%= g.label :name, "Genre:" %>
-    <%= g.text_field :genre %><br><br>
+    <%= g.text_field :name %><br><br>
   <% end %>
-  
+
   <%= f.label :page_count %>
   <%= f.text_field :page_count %><br>
 <%= f.submit%>

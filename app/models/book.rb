@@ -16,4 +16,16 @@ class Book < ApplicationRecord
   accepts_nested_attributes_for :author
   accepts_nested_attributes_for :genre
 
+  # def author_attributes=(author_attributes)
+  #   author_attributes.values.each do |author_attribute|
+  #     if author_attribute["name"].present?
+  #       author = Author.find_or_create_by(author_attirbute)
+  #     end
+  #   end
+  # end
+
+  # def author_attributes=(author_attributes)
+  #   self.author = Author.find_or_create_by(name: author_attributes[:name]) unless author_attirbutes[:name].blank?
+  # end
+
 end
