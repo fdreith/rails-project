@@ -1,4 +1,11 @@
 class User < ApplicationRecord
+  has_many :books, through: :user_books
+  has_many :book_clubs, through: :user_book_clubs
+  # has_many :favorited_quotes
+  # has_many :annotations
+  # has_many :recommendations
+
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
