@@ -4,14 +4,27 @@
   <%= f.label :title %>
   <%= f.text_field :title %><br>
   <%= f.label :author %>
-  <%= f.collection_select :author, @authors, :name, :id%><br>
-  <%= f.label "If your Author is not in the options available, create a new Author:" %>
-  <%= f.text_field :author %><br>
+  <%= f.collection_select :author_id, @authors, :id, :name, {:include_blank => true}%><br>
+  If your Author is not in the options available, create a new Author:
+  <br>
+
+  <%= f.fields_for :author do |a| %>
+    <%= a.label :name, "Author" %>
+    <%= a.text_field :name %><br>
+  <% end %>
+
   <%= f.label :genre %>
-  <%= f.collection_select :genre, @genres, :name, :id%><br>
-  <%= f.label "If the Genre is not in the options available, create a new Genre:" %>
-  <%= f.text_field :genre %><br><br>
+  <%= f.collection_select :genre, @genres, :id, :name, {:include_blank => true}%><br>
+  If the Genre is not in the options available, create a new Genre:
+  <br>
+
+  <%= f.fields_for :genre, @book.genre do |a| %>
+    <%= g.label :name, "Genre:" %>
+    <%= g.text_field :genre %><br><br>
+  <% end %>
+  
   <%= f.label :page_count %>
   <%= f.text_field :page_count %><br>
 <%= f.submit%>
 <%end%>
+

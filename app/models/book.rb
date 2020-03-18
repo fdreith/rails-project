@@ -10,6 +10,10 @@ class Book < ApplicationRecord
 
   validates :title, presence: true, uniqueness: true 
   validates :author_id, presence: true
-  # validates :genre_id, presence: true
+  validates :genre_id, presence: true
   validates :page_count, presence: true
+
+  accepts_nested_attributes_for :author
+  accepts_nested_attributes_for :genre
+
 end
