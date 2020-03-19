@@ -2,6 +2,8 @@ class BooksController < ApplicationController
 
   def index 
     @books = Book.all
+    # genre_books_path(book.genre)
+    # author_books_path(book.author)
   end
 
   def new
@@ -39,6 +41,9 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @book_club = BookClub.new
+
+    # genre_books_path(book.genre)
+    # author_books_path(book.author)
   end
 
 

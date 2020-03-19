@@ -1,11 +1,7 @@
 class UsersController < ApplicationController
 
-  def edit
-    binding.pry
-    @user = current_user
-  end
-
   def update
-    binding.pry
+    current_user.books << Book.find(params[:user][:book_id])
+    redirect_to root_path
   end
 end
