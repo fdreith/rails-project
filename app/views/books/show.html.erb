@@ -5,15 +5,27 @@
 
 <% if !current_user.books.include?(@book) %>
   <%= form_for current_user do |f|%>
-    <%= f.hidden_field :book, value: @book.id %>
+    <%= f.hidden_field :book_id, value: @book.id %>
     <%= f.submit "Add to Read Books" %>
   <% end %>
 <%else%>
   <p>You've read this book.</p>
 <% end %>
 <br>
-
+<h4>Create Book Club on <%= @book.title%></h4>
 <%= form_for @book_club do |f|%>
-    <%= f.hidden_field :book_id, value: @book.id %>
-    <%= f.submit "Create Book Club" %>
+<% if @book_club.errors.any? %>
+<ul>
+  <% @book_club.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+<% end %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br>
+  <%= f.label :passcode %>
+   <%= f.text_field :passcode %><br>
+  <%= f.hidden_field :book_id, value: @book.id %>
+  <%= f.hidden_field :owner_id, value: current_user.id %>
+  <%= f.submit "Create Book Club on #{@book.title}" %>
 <% end %>

@@ -1,0 +1,31 @@
+<h2><%=@book_club.name%>'s' discussion on <%= @book_club.book %></h2>
+
+<h4><%= @book_club.name%> Members</h4>
+<ul>
+<% @book_club.users.each do |user| %>
+  <li><%= user.name != nil ? user.name : user.email %></li>
+<% end %>
+</ul>
+
+<h4>Disscussion: </h4>
+<ul>
+<% @book_club.comments.each do |comment| %>
+  <li><%= user.name != nil ? user.name : user.email %> : <%= comment %></li>
+<% end %>
+</ul>
+
+<%= form_for @comment fo |f| %>
+<% if @book_club.errors.any? %>
+<ul>
+  <% @book_club.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+</ul>
+  <%= f.label :content %>
+  <%= f.text_field :content %><br>
+  <%= f.hidden_field :book_club_id, value: @book_club.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit %>
+<%end%>
+
+
