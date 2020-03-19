@@ -1,10 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations', omniauth_callbacks: 'users/omniauth_callbacks' }
-  resources :comments
+
   resources :user_book_clubs
-  resources :book_clubs
-  resources :authors
-  resources :genres
+  resources :book_clubs, only: [:show] do 
+    resources :comments, only: [:index, :new]
+  end
+  resources :comments
+  resources :authors, only: [:show] do 
+    resources :books, only: [:index, :show]
+  end
+  resources :genres, only: [:show] do 
+    resources :books, only: [:index, :show]
+  end
   resources :user_books
   resources :users
   resources :books
