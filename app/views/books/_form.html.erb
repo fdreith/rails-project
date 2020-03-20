@@ -1,0 +1,44 @@
+<%= form_for @book do |f|%>
+
+  <% if @book.errors.any? %>
+    <div id="error_explanation">
+      <h4>
+        <%= pluralize(@book.errors.count, "error")%>
+        prohibited this book from being saved:
+      </h4>
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %> 
+    </ul>
+    </div>
+  <%end%>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %><br>
+
+  <%if @author == nil%>
+    <%= f.label :author %>
+    <%= f.collection_select :author_id, Author.all, :id, :name, {:include_blank => true}%><br>
+    If your Author is not in the options available, create a new Author:
+    <br>
+    <%= f.fields_for :author, @book.build_author do |a| %>
+      <%= a.label :name, "Author" %>
+      <%= a.text_field :name %><br>
+    <% end %>
+  <%end%>
+
+  <%= f.label :genre %>
+  <%= f.collection_select :genre_id, Genre.all, :id, :name, {:include_blank => true}%><br>
+  If the Genre is not in the options available, create a new Genre:
+  <br>
+
+  <%= f.fields_for :genre, @book.build_genre do |g| %>
+    <%= g.label :name, "Genre:" %>
+    <%= g.text_field :name %><br><br>
+  <% end %>
+
+  <%= f.label :page_count %>
+  <%= f.text_field :page_count %><br>
+<%= f.submit%>
+<%end%>
