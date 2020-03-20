@@ -3,4 +3,8 @@ class Author < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true 
 
+  before_save do 
+    self.title = name.titleize
+  end
+
 end

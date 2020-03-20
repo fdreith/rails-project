@@ -9,21 +9,26 @@ class Book < ApplicationRecord
   # has_many :recommendations
 
   validates :title, presence: true, uniqueness: true 
-  validates :author_id, presence: true
+  # validates :author_id, presence: true
   validates :genre_id, presence: true
   validates :page_count, presence: true
 
+  before_save do 
+    self.title = title.titleize
+  end
+
   def author_attributes=(author_attributes)
     if !author_attributes.empty?
-      author = Author.find_or_create_by(author_attributes)
+      # self.update(author_id: Author.find_or_create_by(author_attributes).id)
+      self.author = Author.find_or_create_by(author_attributes)
     end
 
   end
 
-    def genre_attributes=(genre_attributes)
-       if !genre_attributes.empty?
-        genre = Genre.find_or_create_by(genre_attributes)
-       end
+  def genre_attributes=(genre_attributes)
+    if !genre_attributes.empty?
+      self.genre = Genre.find_or_create_by(genre_attributes)
     end
+  end
 
 end
