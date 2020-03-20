@@ -6,13 +6,19 @@
 
 <%= form_for @book do |f|%>
 
-<% if @book.errors.any? %>
-<ul>
-  <% @book.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-  <% end %>
-</ul>
-<% end %>
+  <% if @book.errors.any? %>
+    <div id="error_explanation">
+      <h4>
+        <%= pluralize(@book.errors.count, "error")%>
+        prohibited this book from being saved:
+      </h4>
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %> 
+    </ul>
+    </div>
+  <%end%>
 
   <%= f.label :title %>
   <%= f.text_field :title %><br>

@@ -14,13 +14,19 @@
 <br>
 <h4>Create Book Club on <%= @book.title%></h4>
 <%= form_for @book_club do |f|%>
-<% if @book_club.errors.any? %>
-<ul>
-  <% @book_club.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-  <% end %>
-</ul>
-<% end %>
+  <% if @book_club.errors.any? %>
+    <div id="error_explanation">
+      <h4>
+        <%= pluralize(@book_club.errors.count, "error")%>
+        prohibited this book_club from being saved:
+      </h4>
+  <ul>
+    <% @book_club.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %> 
+    </ul>
+    </div>
+  <%end%>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
   <%= f.label :passcode %>
