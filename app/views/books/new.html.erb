@@ -1,5 +1,8 @@
-<h2>Create a New Book:</h2>
-
+<%if @author == nil%>
+  <h2>Create a New Book:</h2>
+<%else%>
+  <h2>Create a New Book Written By <%=@author.name %></h2>
+<%end%>
 
 <%= form_for @book do |f|%>
 
@@ -13,15 +16,17 @@
 
   <%= f.label :title %>
   <%= f.text_field :title %><br>
-  <%= f.label :author %>
-  <%= f.collection_select :author_id, Author.all, :id, :name, {:include_blank => true}%><br>
-  If your Author is not in the options available, create a new Author:
-  <br>
 
-  <%= f.fields_for :author, @book.build_author do |a| %>
-    <%= a.label :name, "Author" %>
-    <%= a.text_field :name %><br>
-  <% end %>
+  <%if @author == nil%>
+    <%= f.label :author %>
+    <%= f.collection_select :author_id, Author.all, :id, :name, {:include_blank => true}%><br>
+    If your Author is not in the options available, create a new Author:
+    <br>
+    <%= f.fields_for :author, @book.build_author do |a| %>
+      <%= a.label :name, "Author" %>
+      <%= a.text_field :name %><br>
+    <% end %>
+  <%end%>
 
   <%= f.label :genre %>
   <%= f.collection_select :genre_id, Genre.all, :id, :name, {:include_blank => true}%><br>

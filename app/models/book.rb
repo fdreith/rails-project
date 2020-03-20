@@ -13,19 +13,17 @@ class Book < ApplicationRecord
   validates :genre_id, presence: true
   validates :page_count, presence: true
 
-  accepts_nested_attributes_for :author
-  accepts_nested_attributes_for :genre
+  def author_attributes=(author_attributes)
+    if !author_attributes.empty?
+      author = Author.find_or_create_by(author_attributes)
+    end
 
-  # def author_attributes=(author_attributes)
-  #   author_attributes.values.each do |author_attribute|
-  #     if author_attribute["name"].present?
-  #       author = Author.find_or_create_by(author_attirbute)
-  #     end
-  #   end
-  # end
+  end
 
-  # def author_attributes=(author_attributes)
-  #   self.author = Author.find_or_create_by(name: author_attributes[:name]) unless author_attirbutes[:name].blank?
-  # end
+    def genre_attributes=(genre_attributes)
+       if !genre_attributes.empty?
+        genre = Genre.find_or_create_by(genre_attributes)
+       end
+    end
 
 end

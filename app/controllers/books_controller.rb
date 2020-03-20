@@ -2,51 +2,33 @@ class BooksController < ApplicationController
 
   def index 
     @books = Book.all
-    # genre_books_path(book.genre)
-    # author_books_path(book.author)
   end
 
   def new
-    @book = Book.new
-
+    @book = Book.new 
+    if params[:author_id]
+      @author = Author.find(params[:author_id])
+    end
   end
 
   def create
-    if !params[:book][:author_id].empty?
-      author = Author.find(params[:book][:author_id])
-    else 
-      author = Author.create(name: params[:book][:author_attributes][:name])
-    end
-     
-    if !params[:book][:genre_id].empty?
-      genre = Genre.find(params[:book][:genre_id])
-    else
-      genre = Genre.create(name: params[:book][:genre_attributes][:name])
-    end
-
-    @book = Book.create(
-      title: params[:book][:title].strip,
-      author_id: author.id,
-      genre_id: genre.id,
-      page_count: params[:book][:page_count]
-    )
+    @book = Book.create(book_params)
     if @book.persisted?
-      redirect_to books_path
+      redirect_to @book.author
     else
       render :new
     end
-
   end
 
   def show
     @book = Book.find(params[:id])
     @book_club = BookClub.new
-
-    # genre_books_path(book.genre)
-    # author_books_path(book.author)
   end
 
+  private
 
-
+  def book_params
+    params.require(:book).permit(:title, :author_id, :genre_id, :page_count, genre_attributes: [:name], author_attributes: [:name] )
+  end
 
 end
