@@ -13,6 +13,7 @@ class BooksController < ApplicationController
   end
 
   def create
+    binding.pry
     @book = Book.create(book_params)
     if @book.persisted?
       redirect_to @book.author
