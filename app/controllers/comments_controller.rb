@@ -1,15 +1,12 @@
 class CommentsController < ApplicationController
 
-  def new
-    # new_book_club_comment_path
-  end
-
-  def index
-    # book_club_comments_path(comment.path)
-
-    # new_book_club_comment_path
-  end
-
   def create
+    @comment = Comment.create(comment_params)
+  end
+
+  private
+
+  def comment_params
+    params.require(:comment).permit(:content, :book_club_id, :user_id)
   end
 end
