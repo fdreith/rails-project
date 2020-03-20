@@ -15,17 +15,29 @@
 </ul>
 
 <%= form_for @comment fo |f| %>
-<% if @book_club.errors.any? %>
-<ul>
-  <% @book_club.errors.full_messages.each do |message| %>
-    <li><%= message %></li>
-  <% end %>
-</ul>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h4>
+        <%= pluralize(@comment.errors.count, "error")%>
+        prohibited this comment from being saved:
+      </h4>
+  <ul>
+    <% @comment.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %> 
+    </ul>
+    </div>
+  <%end%>
+
   <%= f.label :content %>
   <%= f.text_field :content %><br>
   <%= f.hidden_field :book_club_id, value: @book_club.id %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.submit %>
+<%end%>
+
+<% if current_user == @book_club.owner_id %>
+  <%= button_to "Delete Book Club", book_club_path(@book_club), method: :delete %>
 <%end%>
 
 
