@@ -15,7 +15,7 @@
 <% if !current_user.books.empty?%>
   <ul>
   <% current_user.books.each do |book| %>
-  <li><%= book.title %> by <%= book.author.name %> - <%= book.genre.name %> - <%= book.page_count %> pages</li>
+  <li><%= link_to book.title, book_path(book) %> by <%= book.author.name %> - <%= book.genre.name %> - <%= book.page_count %> pages</li>
   <%end%>
   </ul>
 <%else%>
