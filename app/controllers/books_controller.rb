@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_action :set_book, only: [:show, :edit, :update]
 
   def index 
     @books = Book.all
@@ -21,16 +22,13 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
     @book_club = BookClub.new
   end
 
   def edit
-    @book = Book.find(params[:id])
   end
 
   def update
-    @book = Book.find(params[:id])
     @book.update(book_params)
     redirect_to book_path(@book)
   end
@@ -40,5 +38,10 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :author_id, :genre_id, :page_count, genre_attributes: [:name], author_attributes: [:name] )
   end
+
+  def set_book
+    @book = Book.find(params[:id])
+  end
+
 
 end

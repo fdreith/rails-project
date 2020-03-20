@@ -12,6 +12,8 @@
   <p>You've read this book.</p>
 <% end %>
 <br>
+<%= button_to 'Edit Book Info', edit_book_path, method: :get %>
+<br>
 <h4>Create Book Club on <%= @book.title%></h4>
 <%= form_for @book_club do |f|%>
   <% if @book_club.errors.any? %>
