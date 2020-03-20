@@ -1,4 +1,4 @@
-<h2><%=@book_club.name%>'s' discussion on <%= @book_club.book %></h2>
+<h2><%=@book_club.name%>'s' discussion on <%= @book_club.book.title %></h2>
 
 <h4><%= @book_club.name%> Members</h4>
 <ul>
@@ -14,7 +14,7 @@
 <% end %>
 </ul>
 
-<%= form_for @comment fo |f| %>
+<%= form_for @comment do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h4>

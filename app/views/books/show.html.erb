@@ -12,8 +12,10 @@
   <p>You've read this book.</p>
 <% end %>
 <br>
-<%= button_to 'Edit Book Info', edit_book_path, method: :get %>
+<%= button_to 'Edit Book Info', edit_book_path(@book.id), method: :get %>
 <br>
+<%# <%= button_to 'Create Book Club on <%=@book.title>', new_book_club_path, method: :get %>
+
 <h4>Create Book Club on <%= @book.title%></h4>
 <%= form_for @book_club do |f|%>
   <% if @book_club.errors.any? %>
@@ -34,6 +36,6 @@
   <%= f.label :passcode %>
    <%= f.text_field :passcode %><br>
   <%= f.hidden_field :book_id, value: @book.id %>
-  <%= f.hidden_field :owner_id, value: current_user.id %>
   <%= f.submit "Create Book Club on #{@book.title}" %>
 <% end %>
+

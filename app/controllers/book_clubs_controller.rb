@@ -15,12 +15,12 @@ class BookClubsController < ApplicationController
 
   def create 
     @book = Book.find(params[:book_club][:book_id])   
-    @book_club = BookClub.create(book_club_params)
+    @book_club = current_user.owned_clubs.create(book_club_params)
     if @book_club.persisted?
       @book_club.users << current_user
       redirect_to @book_club
     else
-      render :new
+      render "books/show"
     end
   end
 
@@ -32,7 +32,7 @@ class BookClubsController < ApplicationController
   private
 
   def book_club_params
-    params.require(:book_club).permit(:name, :passcode, :book_id, :owner_id => current_user.id)
+    params.require(:book_club).permit(:name, :passcode, :book_id)
   end
 
 end
