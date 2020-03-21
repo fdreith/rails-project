@@ -9,6 +9,6 @@ class BookClub < ApplicationRecord
   validates :book_id, presence: true
 
   before_save do 
-    self.title = name.titleize
+    self.name = name.titleize
   end
 end
