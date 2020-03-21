@@ -4,6 +4,6 @@ class Genre < ApplicationRecord
   validates :name, presence: true, uniqueness: true 
 
   before_save do 
-    self.title = name.titleize
+    self.name = name.titleize
   end
 end

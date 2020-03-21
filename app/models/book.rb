@@ -9,8 +9,6 @@ class Book < ApplicationRecord
   # has_many :recommendations
 
   validates :title, presence: true, uniqueness: true 
-  # validates :author_id, presence: true
-  validates :genre_id, presence: true
   validates :page_count, presence: true
 
   before_save do 
@@ -18,15 +16,13 @@ class Book < ApplicationRecord
   end
 
   def author_attributes=(author_attributes)
-    if !author_attributes.empty?
-      # self.update(author_id: Author.find_or_create_by(author_attributes).id)
+    if !author_attributes.values.first.empty?
       self.author = Author.find_or_create_by(author_attributes)
     end
-
   end
 
   def genre_attributes=(genre_attributes)
-    if !genre_attributes.empty?
+    if !genre_attributes.values.first.empty?
       self.genre = Genre.find_or_create_by(genre_attributes)
     end
   end
