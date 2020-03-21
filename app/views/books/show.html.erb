@@ -14,7 +14,6 @@
 <br>
 <%= button_to 'Edit Book Info', edit_book_path(@book.id), method: :get %>
 <br>
-<%# <%= button_to 'Create Book Club on <%=@book.title>', new_book_club_path, method: :get %>
 
 <h4>Create Book Club on <%= @book.title%></h4>
 <%= form_for @book_club do |f|%>

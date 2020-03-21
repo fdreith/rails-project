@@ -2,7 +2,7 @@
 
 <ul>
 <% @books.each do |book| %>
-  <li><%= link_to book.title, book_path(book) %> by <%= link_to book.author.name, author_path(book.author) %> - <%= link_to book.genre.name, genre_path(book.genre) %> - <%= book.page_count %> pages</li>
+    <li><%= link_to book.title, book_path(book) %> by <%= link_to book.author.name, author_path(book.author) %> - <%= link_to book.genre.name, genre_path(book.genre) %> - <%= book.page_count %> pages</li>
 <% end %>
 </ul>
 
