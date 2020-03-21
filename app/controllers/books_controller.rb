@@ -30,7 +30,7 @@ class BooksController < ApplicationController
 
   def update
     @book.update(book_params)
-    if @book.update
+    if !@comment.errors.any?
       redirect_to book_path(@book)
     else
       render :edit
