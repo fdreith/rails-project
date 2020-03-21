@@ -11,10 +11,12 @@ class Book < ApplicationRecord
   validates :title, presence: true, uniqueness: true 
   validates :page_count, presence: true
 
+  default_scope { order(title: :asc)}
   scope :by_author, ->(author_id) { where("author_id = ?", author_id)}
   scope :by_genre, ->(genre_id) { where("genre_id = ?", genre_id)}
   scope :by_page_count, ->(page_count) { where("page_count <= ?", page_count)}
   scope :quick_read, -> { where("page_count <= 200")}
+
 
   before_save do 
     self.title = title.titleize
