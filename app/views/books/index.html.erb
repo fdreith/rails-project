@@ -1,5 +1,19 @@
 <h2>Books from Database:</h2>
 
+<div>
+  <h3>Filter Books:</h3>
+  <%= form_tag("/books", method: "get") do %>
+    <label>By Author:</label><br>
+    <%= select_tag "author", options_from_collection_for_select(Author.all, "id", "name"), include_blank: true %><br>
+    <label>By Genre:</label><br>
+    <%= select_tag "genre", options_from_collection_for_select(Genre.all, "id", "name"), include_blank: true %><br>
+    <label>By Page Length:</label><br>
+    <%= text_field_tag "page_count" %><br>
+
+    <%= submit_tag "Filter" %>
+  <% end %>
+</div>
+
 <ul>
 <% @books.each do |book| %>
     <li><%= link_to book.title, book_path(book) %> by <%= link_to book.author.name, author_path(book.author) %> - <%= link_to book.genre.name, genre_path(book.genre) %> - <%= book.page_count %> pages</li>
