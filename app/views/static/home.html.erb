@@ -4,7 +4,7 @@
 <% if !current_user.book_clubs.empty?%>
   <ul>
   <% current_user.book_clubs.each do |book_club| %>
-  <li><%= book_club.name %></li>
+  <li><%= link_to book_club.name, book_club_path(book_club) %></li>
   <%end%>
   </ul>
 <%else%>
