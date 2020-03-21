@@ -32,7 +32,7 @@ class BookClubsController < ApplicationController
   private
 
   def book_club_params
-    params.require(:book_club).permit(:name, :passcode, :book_id)
+    params.require(:book_club).permit(:name, :book_id)
   end
 
 end

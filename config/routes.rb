@@ -10,11 +10,11 @@ Rails.application.routes.draw do
   end
 
   resources :authors, only: [:show] do 
-    resources :books, only: [:index, :show, :new, :edit, :update]
+    resources :books, only: [:index, :new, :show]
   end
 
   resources :genres, only: [:show] do 
-    resources :books, only: [:index, :show]
+    resources :books, only: [:index]
   end
 
   resources :user_books

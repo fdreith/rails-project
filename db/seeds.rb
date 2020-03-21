@@ -24,7 +24,7 @@ fiction = Genre.create(name: "Fiction")
 biography = Genre.create(name: "Biography")
 nonfiction = Genre.create(name: "Nonfiction")
 
-yoko.books.create(title: "grapefruit", genre_id: poetry.id, page_count: "unnumbered")
+yoko.books.create(title: "Grapefruit", genre_id: poetry.id, page_count: "unnumbered")
 
 jd.books.create(title: "Nine Stories", genre_id: fiction.id, page_count: "198")
 jd.books.create(title: "Catcher in the Rye", genre_id: fiction.id, page_count: "214")
@@ -36,19 +36,41 @@ orwell.books.create(title: "Animal Farm", genre_id: dystopian.id, page_count: "1
 
 margo.books.create(title: "Dream Catcher", genre_id: biography.id, page_count: "450")
 
-sylvia.books.create(title: "The Bell Jar", genre_id: fiction.id, page_count: "264")
+bell = sylvia.books.create(title: "The Bell Jar", genre_id: fiction.id, page_count: "264")
 sylvia.books.create(title: "Ariel", genre_id: poetry.id, page_count: "128")
 
 gerald.books.create(title: "Second Nature", genre_id: fiction.id, page_count: "157")
 
-joy.books.create(title: "The Pigment of Your Imagination", genre_id: nonfiction.id, page_count: "312")
+imagination = joy.books.create(title: "The Pigment of Your Imagination", genre_id: nonfiction.id, page_count: "312")
 
-gibran.books.create(title: "The Prophet", genre_id: poetry.id, page_count: "96")
+prophet = gibran.books.create(title: "The Prophet", genre_id: poetry.id, page_count: "96")
 
-toni.books.create(title: "Song of Solomon", genre_id: fiction.id, page_count: "341")
+solomon = toni.books.create(title: "Song of Solomon", genre_id: fiction.id, page_count: "341")
 
-robert.books.create(title: "Zen and the Art of Motorcycle Maintenance", genre_id: fiction.id, page_count: "540")
+zen = robert.books.create(title: "Zen and the Art of Motorcycle Maintenance", genre_id: fiction.id, page_count: "540")
 
 haruki.books.create(title: "The Wind-Up Bird Chronicle", genre_id: fiction.id, page_count: "607")
 haruki.books.create(title: "Killing Commendatore", genre_id: fiction.id, page_count: "512")
 
+
+brad = User.create! :name => 'Brad Lincoln', :email => 'brad@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
+
+mike = User.create! :name => 'Mike Alexander', :email => 'mike@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
+
+ashton = User.create! :name => 'Ashton Schwarz', :email => 'ashton@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
+
+emily = User.create! :name => 'Emily Taylor', :email => 'emily@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
+
+camille = User.create! :name => 'Camille Flores', :email => 'camille@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
+
+
+zen_club = brad.book_clubs.create(name: "Zen and Books", book_id: zen.id, owner_id: brad.id)
+comment = brad.comments.create(content: "This is one of the most influcential books of my 30s", book_club_id: zen_club.id)
+
+bell_club = camille.book_clubs.create(name: "Bell Jar Club", book_id: bell.id, owner_id: camille.id)
+
+imagination_club = emily.book_clubs.create(name: "Imagination Club", book_id: imagination.id, owner_id: emily.id)
+
+prophet_club = mike.book_clubs.create(name: "The Prophet Club", book_id: prophet.id, owner_id: mike.id)
+
+solomon_club = ashton.book_clubs.create(name: "Song of Solomon Club", book_id: solomon.id, owner_id: ashton.id)

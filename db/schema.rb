@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 2020_03_18_044301) do
 
   create_table "book_clubs", force: :cascade do |t|
     t.string "name"
-    t.string "passcode"
     t.integer "book_id"
     t.integer "owner_id"
     t.datetime "created_at", precision: 6, null: false

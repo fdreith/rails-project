@@ -1,48 +1,50 @@
-<h2><%=@book_club.name%>'s' discussion on <%= @book_club.book.title %></h2>
 
-<h4><%= @book_club.name%> Members</h4>
-<ul>
-<% @book_club.users.each do |user| %>
-  <li><%= user.name != nil ? user.name : user.email %></li>
-<% end %>
-</ul>
+  <h2><%=@book_club.name%>'s discussion on <%= @book_club.book.title %></h2>
 
-<h4>Disscussion: </h4>
-<ul>
-<% @book_club.comments.each do |comment| %>
-  <li><%= comment.user.name != nil ? comment.user.name : comment.user.email %> : <%= comment.content %></li>
-  <% if current_user == comment.user %>
-    <%= button_to "Edit", edit_book_club_comment_path(comment.book_club, comment), method: :get %>
-    <% end %>
-<% end %>
-</ul>
-
-<%= form_for @comment do |f| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h4>
-        <%= pluralize(@comment.errors.count, "error")%>
-        prohibited this comment from being saved:
-      </h4>
+  <h4><%= @book_club.name%> Members</h4>
   <ul>
-    <% @comment.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %> 
-    </ul>
-    </div>
+  <% @book_club.users.each do |user| %>
+    <li><%= user.name != nil ? user.name : user.email %></li>
+  <% end %>
+  </ul>
+
+  <h4>Disscussion: </h4>
+  <ul>
+  <% @book_club.comments.each do |comment| %>
+    <li><%= comment.user.name != nil ? comment.user.name : comment.user.email %> : <%= comment.content %></li>
+    <% if current_user == comment.user %>
+      <%= button_to "Edit", edit_book_club_comment_path(comment.book_club, comment), method: :get %>
+      <% end %>
+  <% end %>
+  </ul>
+
+  <%= form_for @comment do |f| %>
+    <% if @comment.errors.any? %>
+      <div id="error_explanation">
+        <h4>
+          <%= pluralize(@comment.errors.count, "error")%>
+          prohibited this comment from being saved:
+        </h4>
+    <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %> 
+      </ul>
+      </div>
+    <%end%>
+
+
+    <%= f.text_area :content %><br>
+    <%= f.hidden_field :book_club_id, value: @book_club.id %>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.submit %>
   <%end%>
 
+  <br><br>
 
-  <%= f.text_area :content %><br>
-  <%= f.hidden_field :book_club_id, value: @book_club.id %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit %>
-<%end%>
+  <% if current_user.id == @book_club.owner_id %>
+    <%= button_to "Delete Book Club", book_club_path(@book_club), method: :delete %>
+  <%end%>
 
-<br><br>
-
-<% if current_user.id == @book_club.owner_id %>
-  <%= button_to "Delete Book Club", book_club_path(@book_club), method: :delete %>
-<%end%>
 
 

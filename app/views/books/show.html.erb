@@ -14,6 +14,8 @@
 <br>
 <%= button_to 'Edit Book Info', edit_book_path(@book.id), method: :get %>
 <br>
+<%= button_to "Join Existing Book Club on #{@book.title}", book_clubs_path, method: :get %>
+<br>
 
 <h4>Create Book Club on <%= @book.title%></h4>
 <%= form_for @book_club do |f|%>
@@ -32,9 +34,8 @@
   <%end%>
   <%= f.label :name %>
   <%= f.text_field :name %><br>
-  <%= f.label :passcode %>
-   <%= f.text_field :passcode %><br>
   <%= f.hidden_field :book_id, value: @book.id %>
   <%= f.submit "Create Book Club on #{@book.title}" %>
 <% end %>
+
 
