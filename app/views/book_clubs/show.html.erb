@@ -12,7 +12,7 @@
 <% @book_club.comments.each do |comment| %>
   <li><%= comment.user.name != nil ? comment.user.name : comment.user.email %> : <%= comment.content %></li>
   <% if current_user == comment.user %>
-    <%= button_to "Edit", edit_book_club_comment_path(comment), method: :get %>
+    <%= button_to "Edit", edit_book_club_comment_path(comment.book_club, comment), method: :get %>
     <% end %>
 <% end %>
 </ul>
