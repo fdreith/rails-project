@@ -10,6 +10,8 @@
 <%else%>
   You have no current Book Clubs. 
 <%end%>
+<%= button_to "Join Existing Book Club", book_clubs_path, method: :get %>
+<br>
 
 <h3>My Read Books </h3>
 <% if !current_user.books.empty?%>

@@ -14,9 +14,21 @@
 <br>
 <%= button_to 'Edit Book Info', edit_book_path(@book.id), method: :get %>
 <br>
-<%= button_to "Join Existing Book Club on #{@book.title}", book_clubs_path, method: :get %>
+<% if !@book_clubs.empty? %>
+<h4>Join Existing Book Club Disscussion about <%= @book.title %>:</h4>
+  <ul>
+  <% @book_clubs.each do |book_club| %>
+    <li> <%= book_club.name%> 
+    <% if !book_club.users.include?(current_user)%>
+      <%= form_for book_club do |f| %>
+        <%= f.submit "Join" %> 
+      <% end %> 
+    <% end %>
+    </li>
+  <% end %>
+  </ul>
+<% end %>
 <br>
-
 <h4>Create Book Club on <%= @book.title%></h4>
 <%= form_for @book_club do |f|%>
   <% if @book_club.errors.any? %>
@@ -32,10 +44,10 @@
     </ul>
     </div>
   <%end%>
-  <%= f.label :name %>
+  <%= f.label "Book Club Name:" %><br>
   <%= f.text_field :name %><br>
   <%= f.hidden_field :book_id, value: @book.id %>
-  <%= f.submit "Create Book Club on #{@book.title}" %>
+  <%= f.submit "Create Club" %>
 <% end %>
 
 
