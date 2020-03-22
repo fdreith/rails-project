@@ -2,7 +2,6 @@
 <h4>Genre: <%= link_to @book.genre.name, genre_path(@book.genre)%></h3>
 <h4>Page Count: <%= @book.page_count%></h3>
 <br>
-
 <% if !current_user.books.include?(@book) %>
   <%= form_for current_user do |f|%>
     <%= f.hidden_field :book_id, value: @book.id %>
@@ -15,7 +14,7 @@
 <%= button_to 'Edit Book Info', edit_book_path(@book.id), method: :get %>
 <br>
 <% if !@book_clubs.empty? %>
-<h4>Join Existing Book Club Disscussion about <%= @book.title %>:</h4>
+  <h4>Join Existing Book Club Disscussion about <%= @book.title %>:</h4>
   <ul>
   <% @book_clubs.each do |book_club| %>
     <li> <%= book_club.name%> 
