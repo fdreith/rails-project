@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    redirect_if_not_authorized(@comment.owner)
   end
 
   def update
