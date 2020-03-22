@@ -2,7 +2,7 @@
 <br>
 <ul>
 <% @book_clubs.each do |book_club| %>
-  <li> <%= book_club.name%> 
+  <li> <%= book_club.name%> is reading <%= link_to book_club.book.title, author_book_path(book_club.book.author, book_club.book)%>
   <% if !book_club.users.include?(current_user)%>
     <%= form_for book_club do |f| %>
       <%= f.submit "Join" %> 
@@ -13,3 +13,5 @@
   </ul>
 
 <%= button_to 'Browse Books', books_path, method: :get %>
+
+<p>To create a Book Club, first find or create a book to discuss.</p>
