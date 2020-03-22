@@ -29,4 +29,8 @@ class User < ApplicationRecord
     end
     user
   end 
+
+  def name_or_email
+    self.name != nil ? self.name : self.email
+  end
 end

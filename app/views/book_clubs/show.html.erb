@@ -11,7 +11,7 @@
   <h4>Disscussion: </h4>
   <ul>
   <% @book_club.comments.each do |comment| %>
-    <li><%= comment.user.name != nil ? comment.user.name : comment.user.email %> : <%= comment.content %></li>
+    <li><%= comment.user.name_or_email %> : <%= comment.content %></li>
     <% if current_user == comment.user %>
       <%= button_to "Edit", edit_book_club_comment_path(comment.book_club, comment), method: :get %>
       <% end %>
@@ -19,21 +19,6 @@
   </ul>
 
   <%= form_for @comment do |f| %>
-    <% if @comment.errors.any? %>
-      <div id="error_explanation">
-        <h4>
-          <%= pluralize(@comment.errors.count, "error")%>
-          prohibited this comment from being saved:
-        </h4>
-    <ul>
-      <% @comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %> 
-      </ul>
-      </div>
-    <%end%>
-
-
     <%= f.text_area :content %><br>
     <%= f.hidden_field :book_club_id, value: @book_club.id %>
     <%= f.hidden_field :user_id, value: current_user.id %>
