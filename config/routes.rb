@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
 
   resources :book_clubs, only: [:show] do 
-    resources :comments, only: [:index, :new, :edit, :update, :destroy]
+    resources :comments, only: [:index, :edit, :update, :destroy]
   end
 
   resources :authors, only: [:show] do 
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :genres, only: [:show] do 
-    resources :books, only: [:index]
+    resources :books, only: [:index, :show]
   end
 
   resources :user_books

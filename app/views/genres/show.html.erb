@@ -1,6 +1,6 @@
 <h2>Books in the <%= @genre.name %> Genre:</h2>
 <ul>
 <% @genre.books.each do |book| %>
-  <li><%= link_to book.title, book_path(book) %></li>
+  <li><%= link_to book.title, genre_book_path(@genre, book) %></li>
 <%end%>
 </ul>
