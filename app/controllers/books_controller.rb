@@ -43,6 +43,7 @@ class BooksController < ApplicationController
 
   def show
     @book_club = BookClub.new
+    @book_clubs = BookClub.where(book_id: @book.id)
   end
 
   def edit
