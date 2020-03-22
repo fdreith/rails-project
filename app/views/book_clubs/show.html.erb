@@ -4,26 +4,13 @@
   <h4><%= @book_club.name%> Members</h4>
   <ul>
   <% @book_club.users.each do |user| %>
-    <li><%= user.name != nil ? user.name : user.email %></li>
+    <li><%= user.name_or_email %></li>
   <% end %>
   </ul>
 
   <h4>Disscussion: </h4>
-  <ul>
-  <% @book_club.comments.each do |comment| %>
-    <li><%= comment.user.name_or_email %> : <%= comment.content %></li>
-    <% if current_user == comment.user %>
-      <%= button_to "Edit", edit_book_club_comment_path(comment.book_club, comment), method: :get %>
-      <% end %>
-  <% end %>
-  </ul>
 
-  <%= form_for @comment do |f| %>
-    <%= f.text_area :content %><br>
-    <%= f.hidden_field :book_club_id, value: @book_club.id %>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.submit %>
-  <%end%>
+<%= render 'shared_views/show_and_create_comments' %>
 
   <br><br>
 

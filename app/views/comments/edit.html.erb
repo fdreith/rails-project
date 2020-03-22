@@ -1,18 +1,8 @@
 <h2>Edit Your Comment</h2>
 
 <h4>Disscussion: </h4>
-<ul>
-<% @book_club.comments.each do |comment| %>
-  <li><%= comment.name_or_email %> : <%= comment.content %></li>
-<% end %>
-</ul>
-
-<%= form_for @comment do |f| %>
-  <%= f.text_area :content %><br>
-  <%= f.hidden_field :book_club_id, value: @book_club.id %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
-  <%= f.submit %>
-<%end%>
+<%= render 'shared_views/show_and_create_comments' %>
+ 
 
 <%= button_to "Delete Comment", book_club_comment_path(@comment.book_club), method: :delete %>
 
