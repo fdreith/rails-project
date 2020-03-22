@@ -1,24 +1,20 @@
-# README
+# Book Club App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to the Book Club App!
 
-Things you may want to cover:
+Book Club is a virtual book club. You can search for books, document books that you've read, and create or join book club disscussions on your favorite books. 
 
-* Ruby version
+Happy reading :) 
 
-* System dependencies
+#Installation
+1. Download or clone this repository
+2. cd into the 'rails-project' directory
+3. Run 'bundle install' in your console
+4. Run 'rake db:migrate'
+5. Run 'rake db:seed'
+6. Run 'rails s', to get the server up and running.
+7. Navigate to http://localhost:3000/
 
-* Configuration
+#License
+This project is licensed under the MIT License - see the LICENSE.md file for details
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
