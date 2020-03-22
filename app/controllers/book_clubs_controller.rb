@@ -6,6 +6,7 @@ class BookClubsController < ApplicationController
   end
 
   def show
+    refirect_if_not_member(@book_club.users)
     @comment = Comment.new
   end
 

@@ -8,18 +8,17 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to @book_club
     else
-      render :new
+      render 'book_clubs/show'
     end
   end
 
   def edit
-    redirect_if_not_authorized(@comment.owner)
+    redirect_if_not_authorized(@comment.user)
   end
 
   def update
     @comment.update(comment_params)
-    if !@comment.errors.any?
-      flash[:notice] = "Comment Updated."
+    if @comment.save
       redirect_to @book_club
     else
       render :edit
