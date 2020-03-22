@@ -32,6 +32,7 @@ class BookClubsController < ApplicationController
       @book_club.user_book_clubs.each do |user_club|
         if user_club.user_id == current_user.id
           user_club.destroy
+          flash[:notice] = "You've Left #{@book_club.name}"
         end
       end
       redirect_to root_path
@@ -39,7 +40,8 @@ class BookClubsController < ApplicationController
   end
 
   def destroy
-    @book_club.destroy
+    @book_club.destroy 
+    flash[:notice] = "You've Deleted #{@book_club.name}"
     redirect_to root_path
   end
 

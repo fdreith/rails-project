@@ -1,12 +1,12 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:edit, :update]
+  before_action :set_comment, only: [:edit, :update, :destroy]
   before_action :set_book_club_comment, only: [:create, :update]
   before_action :set_book_club, only: [:edit, :destroy]
 
   def create
-    @comment = Comment.create(comment_params)
+    @comment = Comment.new(comment_params)
     if @comment.save
-      redirect_to book_club_path(@book_club)
+      redirect_to @book_club
     else
       render :new
     end
@@ -18,15 +18,17 @@ class CommentsController < ApplicationController
   def update
     @comment.update(comment_params)
     if !@comment.errors.any?
-      redirect_to book_club_path(@book_club)
+      flash[:notice] = "Comment Updated."
+      redirect_to @book_club
     else
       render :edit
     end
   end
 
   def destroy
-    Comment.find(params[:id]).destroy
-    redirect_to book_club_path(@book_club)
+    @comment.destroy
+    flash[:notice] = "Comment Deleted."
+    redirect_to @book_club
   end
 
   private
