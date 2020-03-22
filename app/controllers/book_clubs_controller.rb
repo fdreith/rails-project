@@ -1,4 +1,5 @@
 class BookClubsController < ApplicationController
+  before_action :set_book_club, only: [:show, :update, :destroy]
   
   def index
     @book_clubs = BookClub.all
@@ -6,7 +7,6 @@ class BookClubsController < ApplicationController
 
   def show
     @comment = Comment.new
-    @book_club = BookClub.find(params[:id])
   end
 
   def new
@@ -24,8 +24,22 @@ class BookClubsController < ApplicationController
     end
   end
 
+  def update
+    if params[:commit] == "Join"
+      @book_club.users << current_user
+      redirect_to @book_club
+    else 
+      @book_club.user_book_clubs.each do |user_club|
+        if user_club.user_id == current_user.id
+          user_club.destroy
+        end
+      end
+      redirect_to root_path
+    end
+  end
+
   def destroy
-    BookClub.find(params[:id]).destroy
+    @book_club.destroy
     redirect_to root_path
   end
 
@@ -33,6 +47,10 @@ class BookClubsController < ApplicationController
 
   def book_club_params
     params.require(:book_club).permit(:name, :book_id)
+  end
+
+  def set_book_club
+    @book_club = BookClub.find(params[:id])
   end
 
 end

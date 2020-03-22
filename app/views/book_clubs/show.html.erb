@@ -43,7 +43,11 @@
   <br><br>
 
   <% if current_user.id == @book_club.owner_id %>
-    <%= button_to "Delete Book Club", book_club_path(@book_club), method: :delete %>
+    <%= button_to "Delete Club", book_club_path(@book_club), method: :delete %>
+  <% else %>
+    <%= form_for @book_club do |f| %>
+      <%= f.submit "Leave Club" %> 
+    <% end %> 
   <%end%>
 
 

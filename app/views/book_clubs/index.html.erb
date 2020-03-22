@@ -2,6 +2,12 @@
 <br>
 <ul>
 <% @book_clubs.each do |book_club| %>
-  <li> <%= link_to book_club.name, book_club_path(book_club)%></li>
+  <li> <%= book_club.name%> 
+  <% if !book_club.users.include?(current_user)%>
+    <%= form_for book_club do |f| %>
+      <%= f.submit "Join" %> 
+    <% end %> 
+  <% end %>
+  </li>
 <% end %>
   </ul>
