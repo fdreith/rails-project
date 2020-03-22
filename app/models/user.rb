@@ -5,7 +5,6 @@ class User < ApplicationRecord
   has_many :book_clubs, through: :user_book_clubs
   has_many :comments
   has_many :owned_clubs, class_name: "BookClub", foreign_key: "owner_id"
-  
   # has_many :favorited_quotes
   # has_many :annotations
   # has_many :recommendations

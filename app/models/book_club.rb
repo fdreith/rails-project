@@ -1,4 +1,6 @@
 class BookClub < ApplicationRecord
+  default_scope { order(name: :asc)}
+  
   has_many :user_book_clubs
   has_many :users, through: :user_book_clubs
   belongs_to :book
@@ -11,4 +13,5 @@ class BookClub < ApplicationRecord
   before_save do 
     self.name = name.titleize
   end
+
 end
