@@ -13,7 +13,7 @@
 <%= button_to "Join Existing Book Club", book_clubs_path, method: :get %>
 <br>
 
-<h3>My Read Books: </h3>
+<h3>My Books: </h3>
 <% if !current_user.books.empty?%>
   <ul>
   <% current_user.books.each do |book| %>
