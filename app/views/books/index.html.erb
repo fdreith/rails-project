@@ -9,6 +9,8 @@
     <%= select_tag "genre", options_from_collection_for_select(Genre.all, "id", "name"), include_blank: true %><br>
     <label>By Page Length:</label><br>
     <%= text_field_tag "page_count" %><br>
+    <label>Search By Title:</label><br>
+    <%= text_field_tag "title" %><br>
     <%= submit_tag "Filter" %>
   <% end %>
 </div>

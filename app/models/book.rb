@@ -3,13 +3,14 @@ class Book < ApplicationRecord
   scope :by_author, ->(author_id) { where("author_id = ?", author_id)}
   scope :by_genre, ->(genre_id) { where("genre_id = ?", genre_id)}
   scope :by_page_count, ->(page_count) { where("page_count <= ?", page_count)}
+  scope :search, ->(title) { where("title LIKE ?", "%#{title}%")}
   # scope :quick_read, -> { where("page_count <= 200")}
 
   has_many :user_books
   has_many :users, through: :user_books
   has_many :book_clubs
   belongs_to :genre
-  belongs_to :author
+  belongs_to :author 
   # has_many :favorited_quotes
   # has_many :annotations
   # has_many :recommendations

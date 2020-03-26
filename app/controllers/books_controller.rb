@@ -19,6 +19,8 @@ class BooksController < ApplicationController
        @books = Book.by_page_count(params[:page_count])
     elsif !params[:author].blank? && params[:genre].blank? && params[:page_count].blank?
        @books = Book.by_author(params[:author])
+    elsif !params[:title].blank?
+      @books = Book.search(params[:title])
     else 
       @books = Book.all
     end
