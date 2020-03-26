@@ -24,6 +24,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+      <% if logged_in? %>
         <li class="nav-item active">
           <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
@@ -39,6 +40,7 @@
         <li class="nav-item">
           <a class="nav-link" <%=link_to "Log Out", destroy_user_session_path, method: :delete%> </a>
         </li>
+        <%end%>
       </ul>
     </div>
   </nav>
