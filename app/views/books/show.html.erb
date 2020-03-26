@@ -5,7 +5,7 @@
 <% if !current_user.books.include?(@book) %>
   <%= form_for current_user do |f|%>
     <%= f.hidden_field :book_id, value: @book.id %>
-    <%= f.submit "Add to Read Books" %>
+    <%= f.submit "Add to My Books" %>
   <% end %>
 <%else%>
   <p>You've read this book.</p>
