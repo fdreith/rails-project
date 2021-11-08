@@ -31,6 +31,6 @@ class User < ApplicationRecord
   end 
 
   def name_or_email
-    self.name != nil ? self.name : self.email
+    self.first_name != nil ? self.first_name : self.email
   end
 end

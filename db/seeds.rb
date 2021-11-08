@@ -53,15 +53,15 @@ haruki.books.create(title: "The Wind-Up Bird Chronicle", genre_id: fiction.id, p
 haruki.books.create(title: "Killing Commendatore", genre_id: fiction.id, page_count: "512")
 
 
-brad = User.create! :name => 'Brad Lincoln', :email => 'brad@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
+brad = User.create! :first_name => 'Brad', :last_name => 'Lincoln', :email => 'brad@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
 
-mike = User.create! :name => 'Mike Alexander', :email => 'mike@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
+mike = User.create! :first_name => 'Mike', :last_name => 'Alexander', :email => 'mike@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
 
-ashton = User.create! :name => 'Ashton Schwarz', :email => 'ashton@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
+ashton = User.create! :first_name => 'Ashton', :last_name => 'Schwarz', :email => 'ashton@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
 
-emily = User.create! :name => 'Emily Taylor', :email => 'emily@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
+emily = User.create! :first_name => 'Emily', :last_name => 'Taylor', :email => 'emily@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
 
-camille = User.create! :name => 'Camille Flores', :email => 'camille@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
+camille = User.create! :first_name => 'Camille', :last_name => 'Flores', :email => 'camille@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
 
 
 zen_club = brad.book_clubs.create(name: "Zen and Books", book_id: zen.id, owner_id: brad.id)
